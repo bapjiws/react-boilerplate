@@ -109,11 +109,11 @@ module.exports = {
       },
 
       {
-        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        test: /\.(eot|ttf|woff|woff2)$/,
         use: {
           loader: 'file-loader',
           options: {
-            name: '[name].[hash].[ext]'
+            name: 'assets/font/[name].[ext]'
           }
         }
       },
@@ -123,7 +123,7 @@ module.exports = {
         use: {
           loader: 'file-loader',
           options: {
-            name: '[name].[hash].[ext]'
+            name: 'assets/img/[name].[ext]'
           }
         }
       },
@@ -139,7 +139,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'], // TODO: remove '.ts' and '.tsx'
     modules: [path.join(__dirname, 'src'), 'node_modules']
   },
 
