@@ -8,22 +8,19 @@ module.exports = {
 
     "plugins": [
         "react",
-        "prettier",
-        "typescript"
+        "prettier"
     ],
 
-    "parser": "typescript-eslint-parser",
+    // "parser": "typescript-eslint-parser",
 
     "rules": {
         "prettier/prettier":  ["error", {"singleQuote": true}],
 
-        "react/jsx-filename-extension": ["error", {"extensions": [".jsx", ".tsx"]}],
+        "react/jsx-filename-extension": ["error", {"extensions": [".js", ".jsx"]}],
 
         "import/extensions": ["error", "always", {
             "js": "never",
-            "jsx": "never",
-            "ts": "never",
-            "tsx": "never"
+            "jsx": "never"
         }],
 
         "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
@@ -32,7 +29,7 @@ module.exports = {
     "settings": {
         "import/resolver": {
             "node": {
-                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+                "extensions": [".js", ".jsx"]
             }
         },
 

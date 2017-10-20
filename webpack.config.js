@@ -47,13 +47,13 @@ if (inProductionMode) {
 module.exports = {
   entry: inProductionMode
     ? {
-        bundle: './src/index.tsx',
+        bundle: './src/index.js',
         vendor: ['react', 'react-dom']
       }
     : [
         'react-hot-loader/patch',
         'webpack-hot-middleware/client',
-        './src/index.tsx'
+        './src/index.js'
       ],
 
   output: {
@@ -63,21 +63,11 @@ module.exports = {
 
   module: {
     rules: [
-      // https://github.com/s-panferov/awesome-typescript-loader
       {
-        test: /\.tsx?$/,
+        test: /\.jsx?$/,
         include: [path.join(__dirname, '/src')],
-        use: [
-          'react-hot-loader/webpack',
-          'babel-loader',
-          {
-            loader: 'awesome-typescript-loader',
-            options: {
-              useBabel: true,
-              useCache: true
-            }
-          }
-        ]
+        // React Hot Loader should be automatically disabled in production.
+        use: ['react-hot-loader/webpack', 'babel-loader']
       },
 
       {
@@ -138,6 +128,7 @@ module.exports = {
         }
       },
 
+      // TODO: consider removing this piece
       // https://github.com/webpack-contrib/source-map-loader
       {
         test: /\.js$/,
