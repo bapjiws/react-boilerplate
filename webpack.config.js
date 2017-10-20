@@ -113,7 +113,7 @@ module.exports = {
         use: {
           loader: 'file-loader',
           options: {
-            name: '[path][name].[hash].[ext]'
+            name: '[name].[hash].[ext]'
           }
         }
       },
@@ -123,7 +123,7 @@ module.exports = {
         use: {
           loader: 'file-loader',
           options: {
-            name: '[path][name].[hash].[ext]'
+            name: '[name].[hash].[ext]'
           }
         }
       },
