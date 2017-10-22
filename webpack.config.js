@@ -1,12 +1,17 @@
 /* eslint-disable global-require */
 const webpack = require('webpack');
-
 const path = require('path');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV;
 const inProductionMode = NODE_ENV === 'production';
+
+const extractSass = new ExtractTextPlugin({
+  filename: '[name].[contenthash].css',
+  disable: !inProductionMode
+});
 
 const plugins = [
   new webpack.NoEmitOnErrorsPlugin(),
@@ -14,7 +19,7 @@ const plugins = [
   new HtmlWebpackPlugin({
     template: path.join(__dirname, '/src/index.html')
   }),
-  new ExtractTextPlugin('index.css')
+  extractSass
 ];
 
 if (inProductionMode) {
@@ -72,40 +77,25 @@ module.exports = {
 
       {
         test: /\.scss$/,
-        // No Hot Module Replacement with ExtractTextPlugin: https://github.com/webpack-contrib/extract-text-webpack-plugin
-        use: inProductionMode
-          ? ExtractTextPlugin.extract({
-              fallback: 'style-loader',
-              use: [
-                'css-loader',
-                {
-                  loader: 'postcss-loader',
-                  options: {
-                    plugins: loader => [ // eslint-disable-line no-unused-vars, prettier/prettier
-                      require('autoprefixer')()
-                    ]
-                  }
-                },
-                'sass-loader'
-              ]
-            })
-          : ['css-hot-loader'].concat(
-              ExtractTextPlugin.extract({
-                fallback: 'style-loader',
-                use: [
-                  'css-loader',
-                  {
-                    loader: 'postcss-loader',
-                    options: {
-                      plugins: loader => [ // eslint-disable-line no-unused-vars, prettier/prettier
-                        require('autoprefixer')()
-                      ]
-                    }
-                  },
-                  'sass-loader'
+        use: extractSass.extract({
+          use: [
+            // Interprets @import and url() like import/require() and will resolve them
+            'css-loader',
+            {
+              // Deals with autoprefixing, linting and other fancy stuff
+              loader: 'postcss-loader',
+              options: {
+                  plugins: loader => [ // eslint-disable-line no-unused-vars, prettier/prettier
+                  require('autoprefixer')()
                 ]
-              })
-            )
+              }
+            },
+            // Loads a SASS/SCSS file and compiles it to CSS
+            'sass-loader'
+          ],
+          // Adds CSS to the DOM by injecting a <style> tag; used in development (when CSS is not extracted)
+          fallback: 'style-loader'
+        })
       },
 
       {
