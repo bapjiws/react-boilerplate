@@ -1,4 +1,4 @@
-/* eslint-disable global-require */
+/* eslint-disable global-require, no-console */
 const express = require('express');
 const path = require('path');
 
@@ -22,7 +22,6 @@ if (!inProductionMode) {
   app.use(webpackDevMiddleware);
   app.use(webpackHotMiddleware);
 } else {
-  // https://github.com/expressjs/compression
   const compression = require('compression');
   app.use(compression());
   app.use(express.static(path.join(__dirname, 'build')));
