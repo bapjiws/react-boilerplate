@@ -22,6 +22,7 @@ if (!inProductionMode) {
   app.use(webpackDevMiddleware);
   app.use(webpackHotMiddleware);
 } else {
+  // TODO: our CSS bundle is not gzipped; check compression's options
   const compression = require('compression');
   app.use(compression());
   app.use(express.static(path.join(__dirname, 'build')));
