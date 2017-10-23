@@ -1,0 +1,1 @@
+For linting, it uses [ESLint](https://eslint.org/) + [Prettier](https://github.com/prettier/prettier) + [Airbnb Style Guide](https://github.com/airbnb/javascript)  on the JS side, [Stylelint](https://github.com/stylelint/stylelint) on the CSS.
