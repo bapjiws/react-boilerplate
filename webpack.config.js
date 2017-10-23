@@ -83,6 +83,7 @@ module.exports = {
             {
               loader: 'css-loader',
               options: {
+                // These three options are responsible for enabling CSS modules
                 modules: true,
                 importLoaders: 1,
                 localIdentName: '[name]__[local]___[hash:base64:5]'
