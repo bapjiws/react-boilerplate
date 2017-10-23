@@ -1,4 +1,4 @@
-**Project features:**
+**This boilerplate features:**
 
 - Linting: [ESLint](https://eslint.org/) + [Prettier](https://github.com/prettier/prettier) + [Airbnb Style Guide](https://github.com/airbnb/javascript) for JS, [Stylelint](https://github.com/stylelint/stylelint) for CSS
 
