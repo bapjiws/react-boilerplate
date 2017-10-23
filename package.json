@@ -17,6 +17,8 @@
     "lint-staged": "^4.2.3",
     "nodemon": "^1.11.0",
     "prettier": "^1.7.2",
+    "stylelint": "^8.2.0",
+    "stylelint-config-standard": "^17.0.0",
     "webpack-dev-middleware": "^1.11.0",
     "webpack-hot-middleware": "^2.18.2",
     "webpack-node-externals": "^1.6.0"
@@ -54,6 +56,8 @@
     "prettier-eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
     "lint-js": "eslint . --ext .js",
     "lint-js-fix": "eslint . --ext .js --fix",
+    "lint-css": "stylelint '**/*.scss'",
+    "lint-css-fix": "stylelint '**/*.scss' --fix",
     "precommit": "lint-staged",
     "postcommit": "git reset *",
     "prod": "NODE_ENV=production node server.js",
@@ -62,6 +66,10 @@
   "lint-staged": {
     "*.js": [
       "eslint --fix",
+      "git add"
+    ],
+    "**/*.scss": [
+      "stylelint --fix",
       "git add"
     ]
   }
