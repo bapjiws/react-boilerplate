@@ -34,8 +34,6 @@ module.exports = {
     //         "node": {
     //             "extensions": [".js", ".jsx"]
     //         }
-    //     },
-    //
-    //     "import/core-modules": [ "autoprefixer" ]
+    //     }
     // }
 };
