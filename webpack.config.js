@@ -80,7 +80,15 @@ module.exports = {
         use: extractSass.extract({
           use: [
             // Interprets @import and url() like import/require() and will resolve them
-            'css-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                // These three options are responsible for enabling CSS modules
+                modules: true,
+                importLoaders: 1,
+                localIdentName: '[name]__[local]___[hash:base64:5]'
+              }
+            },
             {
               // Deals with autoprefixing, linting and other fancy stuff
               loader: 'postcss-loader',
