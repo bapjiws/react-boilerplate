@@ -1,6 +1,6 @@
 import React from 'react';
 import reactLogo from '../../assets/react-logo.svg';
-import styles from './App.scss';
+import styles from '../styles/App.scss';
 
 const App = () => (
   <div className={styles.app}>
