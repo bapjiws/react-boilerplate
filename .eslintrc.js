@@ -17,8 +17,8 @@ module.exports = {
     // "parser": "typescript-eslint-parser",
 
     "rules": {
-        // "prettier/prettier":  ["error", {"singleQuote": true}],
-        //
+        "prettier/prettier":  ["error", {"singleQuote": true}],
+
         "react/jsx-filename-extension": ["error", {"extensions": [".js", ".jsx"]}],
         //
         // "import/extensions": ["error", "always", {
