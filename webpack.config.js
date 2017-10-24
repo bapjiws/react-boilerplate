@@ -137,7 +137,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx'], // TODO: remove '.ts' and '.tsx'
+    extensions: ['.js', '.jsx'],
     modules: [path.join(__dirname, 'src'), 'node_modules']
   },
 
