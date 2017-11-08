@@ -13,7 +13,9 @@ if (!inProductionMode) {
   // Webpack Dev Middleware: https://github.com/webpack/webpack-dev-middleware
   const webpackDevMiddleware = require('webpack-dev-middleware')(compiler, {
     noInfo: true,
-    publicPath: webpackConfig.output.publicPath
+    stats: {
+      color: true
+    }
   });
 
   // Webpack Hot Middleware: https://github.com/glenjamin/webpack-hot-middleware
