@@ -6,6 +6,7 @@
   "author": "bap jiws",
   "license": "MIT",
   "devDependencies": {
+    "clean-webpack-plugin": "^0.1.17",
     "eslint": "^4.7.2",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-config-prettier": "^2.6.0",
@@ -42,15 +43,13 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-hot-loader": "next",
-    "rimraf": "^2.6.1",
     "sass-loader": "^6.0.6",
     "source-map-loader": "^0.2.1",
     "style-loader": "^0.18.2",
     "webpack": "^3.2.0"
   },
   "scripts": {
-    "build": "yarn run clean && NODE_ENV=production webpack -p",
-    "clean": "rimraf build",
+    "build": "NODE_ENV=production webpack -p",
     "dev": "node server.js",
     "dev-live": "nodemon server.js",
     "prettier-eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",

@@ -2,6 +2,7 @@
 const webpack = require('webpack');
 const path = require('path');
 
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -9,12 +10,13 @@ const NODE_ENV = process.env.NODE_ENV;
 const inProductionMode = NODE_ENV === 'production';
 
 const extractSass = new ExtractTextPlugin({
-  filename: '[name].[contenthash].css',
+  filename: 'css/[name].[contenthash].css',
   disable: !inProductionMode
 });
 
 const plugins = [
   new webpack.NoEmitOnErrorsPlugin(),
+  new CleanWebpackPlugin(['build']),
   new webpack.optimize.ModuleConcatenationPlugin(),
   new HtmlWebpackPlugin({
     template: path.join(__dirname, '/src/index.html')
@@ -63,7 +65,7 @@ module.exports = {
 
   output: {
     path: path.join(__dirname, 'build'),
-    filename: inProductionMode ? '[name].[chunkhash].js' : 'bundle.js'
+    filename: inProductionMode ? 'js/[name].[chunkhash].js' : 'js/bundle.js'
   },
 
   module: {
@@ -111,7 +113,7 @@ module.exports = {
         use: {
           loader: 'file-loader',
           options: {
-            name: 'assets/font/[name].[ext]'
+            name: 'font/[name].[ext]'
           }
         }
       },
@@ -121,7 +123,7 @@ module.exports = {
         use: {
           loader: 'file-loader',
           options: {
-            name: 'assets/img/[name].[ext]'
+            name: 'img/[name].[ext]'
           }
         }
       },
