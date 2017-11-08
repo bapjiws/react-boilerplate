@@ -5,6 +5,7 @@ const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV;
 const inProductionMode = NODE_ENV === 'production';
@@ -17,6 +18,10 @@ const extractSass = new ExtractTextPlugin({
 const plugins = [
   new webpack.NoEmitOnErrorsPlugin(),
   new CleanWebpackPlugin(['build']),
+  new StyleLintPlugin({
+    failOnError: inProductionMode,
+    quiet: false
+  }),
   new webpack.optimize.ModuleConcatenationPlugin(),
   new HtmlWebpackPlugin({
     template: path.join(__dirname, '/src/index.html')
