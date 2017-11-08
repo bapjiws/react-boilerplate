@@ -50,8 +50,6 @@
   },
   "scripts": {
     "build": "NODE_ENV=production webpack -p",
-    "dev": "node server.js",
-    "dev-live": "nodemon server.js",
     "prettier-eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
     "lint-js": "eslint . --ext .js",
     "lint-js-fix": "eslint . --ext .js --fix",
@@ -59,7 +57,9 @@
     "lint-css-fix": "stylelint '**/*.scss' --fix",
     "precommit": "lint-staged",
     "postcommit": "git reset *",
-    "prod": "NODE_ENV=production node server.js",
+    "start:dev": "node server.js",
+    "start:dev-live": "nodemon server.js",
+    "start:prod": "NODE_ENV=production node server.js",
     "release-the-kraken": "yarn run build && yarn run prod"
   },
   "lint-staged": {
