@@ -75,7 +75,7 @@ module.exports = {
         include: [path.join(__dirname, '/src')],
         // React Hot Loader should be automatically disabled in production.
         // TODO: Thanks for using Babel: we recommend using babel-preset-env now: please read babeljs.io/env to update!
-        use: ['react-hot-loader/webpack', 'babel-loader']
+        use: ['react-hot-loader/webpack', 'babel-loader', 'eslint-loader']
       },
 
       {
