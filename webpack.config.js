@@ -95,7 +95,7 @@ module.exports = {
               // Deals with autoprefixing, linting and other fancy stuff
               loader: 'postcss-loader',
               options: {
-                  plugins: loader => [ // eslint-disable-line no-unused-vars, prettier/prettier
+                                plugins: loader => [ // eslint-disable-line no-unused-vars, prettier/prettier
                   require('autoprefixer')()
                 ]
               }
@@ -110,22 +110,42 @@ module.exports = {
 
       {
         test: /\.(eot|ttf|woff|woff2)$/,
-        use: {
-          loader: 'file-loader',
-          options: {
-            name: 'font/[name].[ext]'
+        // An array of rules from which only the first matching Rule is used when the Rule matches.
+        oneOf: [
+          // The url-loader works like the file-loader, except it embeds assets smaller than the byte limit in bytes as DataURLs to avoid requests.
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              name: 'font/[name].[ext]'
+            }
+          },
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'font/[name].[ext]'
+            }
           }
-        }
+        ]
       },
 
       {
         test: /\.(jpe?g|png|gif|svg)$/,
-        use: {
-          loader: 'file-loader',
-          options: {
-            name: 'img/[name].[ext]'
+        oneOf: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              name: 'img/[name].[ext]'
+            }
+          },
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'img/[name].[ext]'
+            }
           }
-        }
+        ]
       }
     ]
   },
