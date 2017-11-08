@@ -126,14 +126,6 @@ module.exports = {
             name: 'img/[name].[ext]'
           }
         }
-      },
-
-      // TODO: consider removing this piece
-      // https://github.com/webpack-contrib/source-map-loader
-      {
-        test: /\.js$/,
-        use: ['source-map-loader'],
-        enforce: 'pre'
       }
     ]
   },

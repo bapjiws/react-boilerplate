@@ -44,7 +44,6 @@
     "react-dom": "^15.6.1",
     "react-hot-loader": "next",
     "sass-loader": "^6.0.6",
-    "source-map-loader": "^0.2.1",
     "style-loader": "^0.18.2",
     "webpack": "^3.2.0"
   },
