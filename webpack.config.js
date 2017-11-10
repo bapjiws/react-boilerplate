@@ -17,7 +17,6 @@ const extractSass = new ExtractTextPlugin({
 
 const plugins = [
   new webpack.NoEmitOnErrorsPlugin(),
-  new CleanWebpackPlugin(['build']),
   new StyleLintPlugin({
     failOnError: inProductionMode,
     quiet: false
@@ -32,6 +31,7 @@ const plugins = [
 if (inProductionMode) {
   plugins.push(
     new webpack.EnvironmentPlugin(['NODE_ENV']),
+    new CleanWebpackPlugin(['build']),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor', 'manifest']
     })
