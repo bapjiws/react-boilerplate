@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 
-const NODE_ENV = process.env.NODE_ENV;
+const { NODE_ENV } = process.env;
 const inProductionMode = NODE_ENV === 'production';
 
 const extractSass = new ExtractTextPlugin({
