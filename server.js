@@ -24,6 +24,7 @@ if (!inProductionMode) {
   app.use(webpackDevMiddleware);
   app.use(webpackHotMiddleware);
 } else {
+  // TODO: move this part outside of the clause, it should be enabled at all times
   // TODO: our CSS bundle is not gzipped; check compression's options
   const compression = require('compression');
   app.use(compression());
