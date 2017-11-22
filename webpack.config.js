@@ -2,6 +2,18 @@
 const webpack = require('webpack');
 const path = require('path');
 
+const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
+
+const webpackIsomorphicToolsPlugin =
+  // webpack-isomorphic-tools settings reside in a separate .js file
+  // (because they will be used in the web server code too).
+  new WebpackIsomorphicToolsPlugin(
+    require('./webpack-isomorphic-tools-configuration')
+  )
+    // also enter development mode since it's a development webpack configuration
+    // (see below for explanation)
+    .development();
+
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -52,11 +64,14 @@ if (inProductionMode) {
 
   plugins.push(
     new webpack.DefinePlugin(envVars),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    webpackIsomorphicToolsPlugin
   );
 }
 
 module.exports = {
+  context: __dirname,
+
   entry: inProductionMode
     ? {
         bundle: './src/index.js',
@@ -136,23 +151,31 @@ module.exports = {
       },
 
       {
-        test: /\.(jpe?g|png|gif|svg)$/,
-        oneOf: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8192,
-              name: 'img/[name].[ext]'
-            }
-          },
-          {
-            loader: 'file-loader',
-            options: {
-              name: 'img/[name].[ext]'
-            }
-          }
-        ]
+        test: webpackIsomorphicToolsPlugin.regularExpression('images'),
+        loader: 'file-loader',
+        options: {
+          name: 'img/[name].[ext]'
+        }
       }
+
+      // {
+      //   test: /\.(jpe?g|png|gif|svg)$/,
+      //   oneOf: [
+      //     {
+      //       loader: 'url-loader',
+      //       options: {
+      //         limit: 8192,
+      //         name: 'img/[name].[ext]'
+      //       }
+      //     },
+      //     {
+      //       loader: 'file-loader',
+      //       options: {
+      //         name: 'img/[name].[ext]'
+      //       }
+      //     }
+      //   ]
+      // }
     ]
   },
 
