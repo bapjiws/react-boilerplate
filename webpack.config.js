@@ -88,20 +88,12 @@ module.exports = {
         use: extractSass.extract({
           use: [
             // Interprets @import and url() like import/require() and will resolve them
-            {
-              loader: 'css-loader',
-              options: {
-                // These three options are responsible for enabling CSS modules
-                modules: true,
-                importLoaders: 1,
-                localIdentName: '[name]__[local]___[hash:base64:5]'
-              }
-            },
+            'css-loader',
             {
               // Deals with autoprefixing, linting and other fancy stuff
               loader: 'postcss-loader',
               options: {
-                                plugins: loader => [ // eslint-disable-line no-unused-vars, prettier/prettier
+                  plugins: loader => [ // eslint-disable-line no-unused-vars, prettier/prettier
                   require('autoprefixer')()
                 ]
               }
