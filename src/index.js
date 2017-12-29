@@ -4,13 +4,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader'; // Automatically disabled in production.
 
-import './index.scss';
-
 import App from './components/App';
 
 const render = Component => {
   ReactDOM.render(
-    <AppContainer>
+    <AppContainer warnings={false}>
       <Component />
     </AppContainer>,
     document.getElementById('root')

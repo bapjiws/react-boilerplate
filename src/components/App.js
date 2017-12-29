@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, injectGlobal } from 'styled-components';
 
 import reactLogo from '../../assets/img/react-logo.svg';
 
@@ -34,6 +34,22 @@ const VeryImportantText = styled.h1`
 
 const Image = styled.img`
   animation: ${rotate360} 10s linear infinite;
+`;
+
+/* eslint-disable no-unused-expressions */
+injectGlobal`
+    html {
+      height: 100%;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+          
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 `;
 
 // TODO: try using '../../assets/img/react-logo.svg' as src inside Image
