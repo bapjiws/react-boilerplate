@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { keyframes, injectGlobal } from 'styled-components';
 
 import reactLogo from '../../assets/img/react-logo.svg';
+import Bungee from '../../assets/fonts/Bungee/Bungee-Regular.ttf';
 
 const CenteringWrapper = styled.div`
   display: flex;
@@ -20,16 +21,10 @@ const rotate360 = keyframes`
 `;
 
 const VeryImportantText = styled.h1`
-  // TODO: add a font
-  //@font-face {
-  //  font-family: '';
-  //  src: url('');
-  //}
-
   width: 100%;
-  font-family: sans-serif; // TODO: add a font
+  font-family: 'Bungee', sans-serif;
   text-align: center;
-  color: #8a8f9c;
+  color: #f30808;
 `;
 
 const Image = styled.img`
@@ -41,6 +36,7 @@ injectGlobal`
     html {
       height: 100%;
     }
+    
     body {
       margin: 0;
       padding: 0;
@@ -50,9 +46,13 @@ injectGlobal`
       justify-content: center;
       align-items: center;
     }
+    
+    @font-face {
+      font-family: 'Bungee';
+      src: url(${Bungee});
+    }
 `;
 
-// TODO: try using '../../assets/img/react-logo.svg' as src inside Image
 const App = () => (
   <CenteringWrapper>
     <VeryImportantText>
