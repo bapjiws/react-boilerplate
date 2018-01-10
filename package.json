@@ -52,6 +52,10 @@
     "styled-components": "^2.4.0"
   },
   "scripts": {
+    "ssr:build-server:dev": "webpack --config webpack.server.js --watch",
+    "ssr:build-server": "webpack --config webpack.server.js",
+    "ssr:start": "node build/js/bundle.js",
+
     "build": "NODE_ENV=production webpack -p",
     "prettier-eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
     "lint-js": "eslint . --ext .js",
