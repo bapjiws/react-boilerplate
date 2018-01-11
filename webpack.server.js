@@ -30,6 +30,46 @@ module.exports = {
             }
           }
         ]
+      },
+
+      {
+        test: /\.(jpe?g|png|gif|svg)$/,
+        oneOf: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              name: 'img/[name].[ext]'
+            }
+          },
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'img/[name].[ext]'
+            }
+          }
+        ]
+      },
+
+      {
+        test: /\.(eot|ttf|woff|woff2)$/,
+        // An array of rules from which only the first matching Rule is used when the Rule matches.
+        oneOf: [
+          // The url-loader works like the file-loader, except it embeds assets smaller than the byte limit in bytes as DataURLs to avoid requests.
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              name: 'font/[name].[ext]'
+            }
+          },
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'font/[name].[ext]'
+            }
+          }
+        ]
       }
     ]
   }

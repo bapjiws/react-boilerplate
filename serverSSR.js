@@ -3,15 +3,15 @@ import express from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { ServerStyleSheet } from 'styled-components';
-import AppSSR from './src/components/AppSSR';
+import App from './src/components/App';
 import template from './util/template';
 
 const app = express();
 
-// app.use(express.static('public')); // client bundle
+app.use(express.static('build'));
 
 const sheet = new ServerStyleSheet();
-const html = renderToString(sheet.collectStyles(<AppSSR />));
+const html = renderToString(sheet.collectStyles(<App />));
 const css = sheet.getStyleTags(); // or sheet.getStyleElement()
 
 app.get('*', (req, res) => {
